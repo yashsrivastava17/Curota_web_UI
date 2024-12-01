@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Eye Cursor</title>
+<style>
+  /* Base reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+  }
+
+  /* Card Styling with shadow */
+  .card {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Shadow for card */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Custom Eye Pointer */
+  .eye-pointer {
+    position: absolute;
+    width: 60px; /* Adjust size as needed */
+    height: 60px;
+    pointer-events: none; /* Cursor doesn't interfere with interactions */
+    transform: rotate(-45deg); /* Rotate for a unique shape */
+    transition: transform 0.1s ease, width 0.2s, height 0.2s; /* Smooth scaling */
+  }
+
+  /* SVG Path Animation for Blinking */
+  .eye-crescent {
+    animation: blink 3s infinite;
+    transform-origin: center;
+  }
+
+  @keyframes blink {
+    0%, 40%, 100% {
+      transform: scale(1,1); /* Visible */
+    }
+    20%, 60% {
+      transform: scale(1,0); /* Collapsed */
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="card">Hover over me!</div>
+
+  <!-- Eye Cursor with SVG Logo -->
+  <div class="eye-pointer" id="custom-cursor">
+    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 131.74 131.21" width="100%" height="100%">
+      <g id="Layer_1-2" data-name="Layer_1">
+        <g>
+          <!-- Outer Eye -->
+          <path d="M131.74,103.34c0,7.66-.85,15.12-2.44,22.3-.71,3.24-3.54,5.57-6.85,5.57H7c-3.87,0-7-3.14-7-7V9.41C0,6.14,2.26,3.31,5.46,2.58,12.83.9,20.51,0,28.39,0c6.23,0,12.32.55,18.25,1.6C22.61,11.57,6.18,35.73,7.3,63.23c1.45,35.24,31.19,62.65,66.44,61.2,25.66-1.05,47.16-17.09,56.4-39.35,1.05,5.92,1.6,12.03,1.6,18.26Z" fill="#ccc"/>
+          <!-- Crescent for Blinking Effect -->
+          <path class="eye-crescent" d="M129.66,73.09c-.22,1.23-.73,2.37-1.47,3.33-1.13,1.52-2.82,2.6-4.77,2.95-2.67.47-5.4.78-8.18.89-33.66,1.38-62.06-24.78-63.44-58.44-.18-4.48.12-8.86.87-13.1.36-2.08,1.55-3.87,3.21-5.02.89-.63,1.92-1.06,3.03-1.26,2.67-.48,5.4-.79,8.18-.9,33.66-1.38,62.06,24.79,63.44,58.44.18,4.48-.13,8.87-.87,13.11Z" fill="#000"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <script>
+    // Move custom cursor with mouse position
+    document.addEventListener('mousemove', (e) => {
+      const eyePointer = document.getElementById('custom-cursor');
+      eyePointer.style.left = `${e.pageX}px`;
+      eyePointer.style.top = `${e.pageY}px`;
+    });
+  </script>
+</body>
+</html>

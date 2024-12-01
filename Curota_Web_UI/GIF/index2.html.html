@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video with Animated Border</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 714px;
+      height: 410px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    
+    .video {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
+    }
+    
+    .rotating-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    .rotating-border rect {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 3;
+      stroke-dasharray: 15 8;
+      stroke-linecap: round;
+      animation: dash-move 9s linear infinite;
+      transition: stroke-dashoffset 2s linear;
+    }
+    
+    @keyframes dash-move {
+      0% {
+        stroke-dashoffset: 0;
+      }
+      44.44% {
+        stroke-dashoffset: 0;
+      }
+      55.55% {
+        stroke-dashoffset: -300;
+      }
+      66.67% {
+        stroke-dashoffset: -300;
+      }
+      75% {
+        stroke-dashoffset: 300;
+      }
+      83.33% {
+        stroke-dashoffset: 300;
+      }
+      91.67% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video class="video" src="Annotation.mp4" autoplay muted loop></video>
+    <svg class="rotating-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 714 410">
+      <rect x="1.5" y="1.5" width="711" height="407" rx="20" ry="20" />
+    </svg>
+  </div>
+</body>
+</html>
